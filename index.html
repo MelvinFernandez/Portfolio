@@ -1,0 +1,1518 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio • Melvin Fernandez Diaz</title>
+  <meta name="description" content="Finance and Accounting student portfolio website for resume, projects, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo.png?v=3">  
+  <style>
+    :root{
+      --bg:#0b0b0c;       /* black */
+      --bg-soft:#111113;  /* near black */
+      --panel:#16171a;    /* dark gray */
+      --muted:#9aa0a6;    /* mid gray */
+      --text:#e6e6e6;     /* silver */
+      --accent:#c0c0c0;   /* silver */
+      --accent-2:#d1d1d1; /* light silver */
+      --ring: rgba(255,255,255,.12);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius-lg: 28px;
+      --gap: 18px;
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+  color:var(--text);
+  background-color: var(--bg);
+  background-image: radial-gradient(900px 450px at 75% -10%, rgba(255,255,255,.04), transparent 60%);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  line-height:1.6; letter-spacing:.1px;
+}
+
+    a{color:var(--accent); text-decoration:none}
+    a:hover{color:var(--accent-2)}
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:60px 20px 64px}
+header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: linear-gradient(180deg, rgba(11,11,12,.92), rgba(11,11,12,.60));
+  -webkit-backdrop-filter: saturate(160%) blur(8px);
+  backdrop-filter: saturate(160%) blur(8px);
+}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 20px}
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand h1{font-size:18px; margin:0; font-weight:700; letter-spacing:.3px}
+    .tabs{display:flex; gap:6px; flex-wrap:wrap}
+    .tab{padding:8px 12px; border-radius:12px; border:1px solid transparent}
+    .tab:hover{background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.06)}
+    .hero{display:grid; grid-template-columns: 1.2fr .8fr; gap:28px; align-items:center; margin-top:24px}
+    @media(max-width: 900px){.hero{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius-lg); box-shadow:var(--shadow)}
+    .hero .card{padding:14px}
+    .badge{display:inline-flex; padding:6px 10px; border:1px solid rgba(255,255,255,.16); border-radius:999px; font-size:12px; color:var(--muted); gap:8px; align-items:center}
+    h2{font-size:40px; line-height:1.1; margin:14px 0 10px}
+    p.lead{font-size:18px; color:#d6d6d6; margin:0 0 16px}
+    .quick{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .button{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px; background:#1c1d21; border:1px solid rgba(255,255,255,.10); text-decoration:none; font-weight:600}
+    .button:hover{transform:translateY(-1px)}
+    .ghost{background:transparent}
+    .grid{display:grid; gap:18px}
+    .grid.cols-3{grid-template-columns: repeat(3, 1fr)}
+    .grid.cols-2{grid-template-columns: repeat(2, 1fr)}
+    @media(max-width: 900px){.grid.cols-3{grid-template-columns:1fr} .grid.cols-2{grid-template-columns:1fr}}
+    section{margin-top:38px}
+    .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px}
+    .section-title h3{margin:0; font-size:22px}
+    .panel{padding:20px; border-radius:var(--radius); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow)}
+    .item{padding:16px; border:1px solid rgba(255,255,255,.08); border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
+    .item:hover{transform:translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,.35); border-color:var(--accent)}
+    .item h4{margin:0 0 6px; font-size:18px}
+    .muted{color:var(--muted)}
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); font-size:12px; margin-right:6px; margin-top:6px}
+    .avatar{max-width: 400px; aspect-ratio:1/1; border-radius:18px; object-fit:cover;border:1px solid rgba(255,255,255,.08); background:#0f1012}
+    .resume-embed{width:100%; height:520px; border:none; border-radius:16px; background:#0f1012}
+    footer{margin:48px 0 0; padding:28px 0; border-top:1px solid rgba(255,255,255,.08); color:var(--muted)}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+    /* ---------- MOBILE FIXES  (edits) ---------- */
+
+    /* Headline scales down on small screens */
+    h2 { font-size: clamp(26px, 7vw, 40px); }
+
+    /* Slightly tighter page padding on phones */
+    @media (max-width: 720px){
+      .wrap { padding: 40px 14px 56px; }
+    }
+
+    /* NAV: stack brand + tabs; tabs fill width neatly */
+    @media (max-width: 720px){
+      header .nav{
+        flex-direction: column;      /* brand on top, tabs below */
+        align-items: stretch;
+        gap: 8px;
+        padding: 10px 14px;
+      }
+      .tabs{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        overflow: visible;           /* no sideways scroll */
+        white-space: normal;
+      }
+      .tabs .tab{
+        display: block;
+        text-align: center;
+        padding: 8px 0;              /* slim but tappable */
+        border: 1px solid rgba(255,255,255,.06);
+        border-radius: 12px;
+        background: transparent;
+      }
+    }
+    @media (max-width: 420px){
+      .tabs { grid-template-columns: repeat(2, 1fr); } /* two columns on narrow phones */
+    }
+
+    /* HERO buttons: tidy and consistent */
+    @media (max-width: 600px){
+      .quick{
+        display: grid;
+        grid-template-columns: 1fr 1fr;  /* two columns */
+        gap: 10px;
+      }
+      .quick .button{
+        width: 100%;
+        justify-content: center;
+        min-height: 40px;                /* slim but tappable */
+      }
+    }
+    @media (max-width: 420px){
+      .quick { grid-template-columns: 1fr; } /* single column on tiny phones */
+    }
+
+    /* PROJECTS & SECTIONS: stretch to full width on mobile */
+    .grid { justify-items: stretch; }
+    @media (max-width: 900px){
+      .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+    }
+    .item, .panel, .card { width: 100%; }
+
+    /* RESUME: usable height on phones; hide on very small screens */
+    @media (max-width: 720px){
+      .resume-embed { width: 100%; height: 70vh; }
+    }
+    @media (max-width: 480px){
+      .resume-embed { display: none; }    /* rely on Download button */
+    }
+    /* --- Headshot: mobile-only fixes --- */
+@media (max-width: 720px){
+  /* keep the hero stacking clean */
+  .hero{ grid-template-columns: 1fr; gap: 16px; }
+
+  /* keep card padding (you already have 14px on hero cards) */
+  .hero .card{ padding: 14px; }
+
+  /* let the headshot grow to the card width on phones */
+  .avatar{
+    max-width: 100%;     /* override the desktop 400px cap */
+    width: 100%;
+    height: auto;        /* preserve aspect ratio with object-fit cover */
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    margin-inline: 0;    /* no auto-centering needed when width is 100% */
+  }
+}
+/* Slimmer tabs on mobile so they fit in one row */
+@media (max-width: 720px){
+  .tabs{
+    display:flex;
+    justify-content:space-between; /* spread across row */
+    flex-wrap:nowrap;              /* keep them in one row */
+    overflow-x:auto;                /* scroll if it really overflows */
+    gap:4px;
+  }
+  .tabs .tab{
+    padding:6px 8px;               /* smaller padding */
+    font-size:14px;                /* slightly smaller text */
+    border-radius:8px;
+    flex:1;                        /* let them shrink/stretch evenly */
+    text-align:center;
+    white-space:nowrap;
+  }
+}
+/* ===== FORCE SINGLE LEFT-ALIGNED ROW ===== */
+header .nav{
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: flex-start !important;  /* name + tabs start at left */
+  gap: 10px;
+  flex-wrap: nowrap !important;            /* never wrap to a second line */
+  overflow: hidden;
+}
+
+header .nav .brand{
+  flex: 0 0 auto !important;               /* brand keeps its natural width */
+  min-width: auto !important;
+}
+
+header .nav .brand h1{
+  margin: 0;
+  white-space: nowrap;                      /* stay on one line */
+}
+
+header .nav .tabs{
+  display: flex !important;
+  flex: 0 1 auto !important;                /* sits next to the brand */
+  flex-wrap: nowrap !important;             /* keep tabs on the same line */
+  gap: 8px;
+  margin-left: 8px;
+  overflow-x: auto;                         /* swipe if it gets tight */
+  -webkit-overflow-scrolling: touch;
+}
+
+header .nav .tabs .tab{
+  flex: 0 0 auto !important;                /* don’t stretch or shrink weirdly */
+  white-space: nowrap;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+/* If you split your name into spans and want only “Melvin” on small screens */
+@media (max-width: 900px){
+  .brand .fade-rest{ display: none !important; }
+}
+/* ===== ONE ROW: Brand on left, Tabs on right ===== */
+header .nav{
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between !important;  /* pushes tabs to right side */
+  flex-wrap: nowrap !important;               
+  gap: 12px;
+  overflow: hidden;
+}
+
+header .nav .brand{
+  flex: 0 0 auto !important;   /* brand keeps natural width */
+  min-width: auto !important;
+}
+
+header .nav .brand h1{
+  margin: 0;
+  white-space: nowrap;
+}
+
+header .nav .tabs{
+  display: flex !important;
+  flex: 0 0 auto !important;   /* tabs group sticks to the right */
+  flex-wrap: nowrap !important;
+  gap: 8px;
+}
+
+header .nav .tabs .tab{
+  flex: 0 0 auto !important;
+  white-space: nowrap;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+/* === Fill the right side with 4 equal tabs === */
+header .nav { gap: 12px; }
+
+header .nav > .brand{
+  flex: 0 0 auto;            /* name keeps natural width */
+  min-width: auto;
+}
+
+header .nav > .tabs{
+  display: flex !important;
+  flex: 1 1 auto !important; /* take all remaining space */
+  flex-wrap: nowrap;
+  gap: 8px;                  /* spacing between buttons */
+  margin-left: 8px;          /* breathing room after name */
+  overflow: visible;         /* no scrolling */
+}
+
+header .nav > .tabs .tab{
+  flex: 1 1 0 !important;    /* each button same width */
+  text-align: center;
+  padding: 8px 0;
+  white-space: nowrap;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-size: 14px;
+}
+/* ===== Mobile-only nav fixes ===== */
+@media (max-width: 720px){
+  .tabs{
+    flex: 1 1 auto; 
+    justify-content: space-between; /* spread the 4 tabs across */
+    gap: 4px;
+  }
+  .tabs .tab{
+    flex: 1 1 0;                   /* make all 4 equal width */
+    font-size: 13px;               /* slightly smaller text */
+    padding: 6px 0;                /* slimmer buttons */
+    text-align: center;
+  }
+}
+/* ===== DESKTOP RESET (force natural widths) ===== */
+header .nav > .tabs{
+  margin-left: auto;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-end !important;
+  gap: 10px;
+  flex: 0 1 auto !important;       /* don't claim all space */
+  overflow: visible !important;
+}
+
+header .nav > .tabs .tab{
+  flex: 0 0 auto !important;        /* NO stretching on desktop */
+  padding: 6px 10px;
+  font-size: 14px;
+  white-space: nowrap;
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+
+/* ===== MOBILE ONLY (stretch evenly) ===== */
+@media (max-width: 720px){
+  header .nav > .tabs{
+    flex: 1 1 auto !important;      /* can use remaining space on phones */
+    justify-content: space-between !important;
+    gap: 4px;
+  }
+  header .nav > .tabs .tab{
+    flex: 1 1 0 !important;         /* equal widths only on mobile */
+    padding: 6px 0;
+    font-size: 13px;
+    text-align: center;
+  }
+}
+/* === Mobile-only tab outline === */
+@media (max-width: 720px){
+  header .nav > .tabs .tab{
+    border: 1px solid rgba(255,255,255,.12) !important;
+    background: transparent;
+    border-radius: 12px;
+  }
+  header .nav > .tabs .tab:hover{
+    border-color: rgba(255,255,255,.20) !important;
+    background: rgba(255,255,255,.04);
+  }
+}
+.item-link {
+  text-decoration: none;  /* remove underline */
+  color: inherit;         /* keep text color */
+  display: block;         /* make whole area clickable */
+}
+
+.item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.item:hover {
+  transform: translateY(-4px); 
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  border-color: var(--accent);
+}
+.tab {
+  color: var(--text);           /* brighter text */
+  font-weight: 600;             /* bold like your projects bar */
+  padding: 8px 12px;
+  border: none;                 /* remove faint outline */
+  background: transparent;
+  border-radius: 0;             /* square/flat */
+  transition: color 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--accent-2);       /* hover effect (brighter silver/white) */
+  background: transparent;      /* no background box */
+}
+.tab {
+  color: var(--text);            /* brighter text */
+  font-weight: 600;              /* bold like your projects bar */
+  padding: 8px 12px;
+  border: none;                  /* no outline on desktop */
+  background: transparent;
+  border-radius: 8px;            /* small rounding like projects */
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--accent-2);        /* text gets a bit brighter */
+  background: rgba(255,255,255,.06);  /* highlight background */
+}
+@media (max-width: 720px) {
+  .tab {
+    border: 1px solid rgba(255,255,255,.12);
+    background: transparent;
+    font-size: 14px;
+    flex: 1 1 0;
+    text-align: center;
+  }
+  .tab:hover {
+    border-color: rgba(255,255,255,.20);
+    background: rgba(255,255,255,.04);
+  }
+}
+.tab {
+  color: var(--text);
+  font-weight: 600;
+  padding: 8px 14px;
+  border: 1px solid rgba(255,255,255,.12);   /* thin outline */
+  border-radius: 10px;                       /* rounded like projects */
+  background: transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.tab:hover {
+  background: rgba(255,255,255,.06);         /* subtle hover highlight */
+  border-color: rgba(255,255,255,.20);       /* brighten outline */
+  color: var(--accent-2);                    /* slightly brighter text */
+}
+@media (max-width: 720px) {
+  .tabs {
+    flex: 1 1 auto;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .tab {
+    flex: 1 1 0;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px 0; /* taller tap target */
+  }
+}
+.tab {
+  color: var(--text);
+  font-weight: 600;
+  padding: 8px 14px;
+  border: none;                      /* no outline by default */
+  border-radius: 10px;
+  background: transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.tab:hover {
+  background: rgba(255,255,255,.06);  /* subtle background highlight */
+  border: 1px solid rgba(255,255,255,.6); /* white outline on hover */
+  color: var(--accent-2);             /* brighter text */
+}
+/* --- Desktop nav tab hover: add thin white outline like projects --- */
+@media (min-width: 721px){
+  header .tabs .tab{
+    border: none !important;                 /* flat by default */
+    background: transparent !important;
+    border-radius: 10px;
+    color: var(--text);
+    
+  }
+  header .tabs .tab:hover,
+  header .tabs .tab:focus-visible{
+    border: 1px solid rgba(255,255,255,.6) !important;  /* white outline */
+    background: rgba(255,255,255,.06) !important;       /* subtle highlight */
+    color: var(--accent-2) !important;
+  }
+}
+/* Remove hover "jump" effect on buttons */
+.button:hover {
+  transform: none !important;
+}
+/* Final override: stop all hover size/position changes */
+.button:hover, 
+.tab:hover {
+  transform: none !important;   /* no movement */
+  scale: 1 !important;          /* no scaling */
+}
+/* ===== FINAL DROP-IN: stop hover jump + add thin white outline on hover ===== */
+
+/* Tabs: keep a 1px border always (transparent by default) */
+header .tabs .tab{
+  border: 1px solid transparent !important;   /* reserve space for outline */
+  background: transparent !important;
+  border-radius: 10px;
+  color: var(--text);
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .0s !important;
+  transform: none !important;                  /* never move/scale */
+}
+
+/* Hover: only change colors, not size/position */
+header .tabs .tab:hover,
+header .tabs .tab:focus-visible{
+  border-color: rgba(255,255,255,.6) !important;  /* thin white outline */
+  background: rgba(255,255,255,.06) !important;   /* subtle highlight */
+  color: var(--accent-2) !important;
+  transform: none !important;                      /* absolutely no motion */
+}
+
+/* Buttons (e.g., "View resume"/"Check Out More"): kill hover movement */
+.button:hover{
+  transform: none !important;                      /* override earlier translateY */
+}
+
+/* Safety: if any other rule still tries to animate size/position */
+header .tabs .tab, .button{
+  transform: none !important;
+  scale: 1 !important;
+}
+/* Base button styling */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;                     /* match nav style */
+  background: transparent;                 /* flat like nav tabs */
+  border: 1px solid rgba(255,255,255,.12); /* faint border */
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text);
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+
+/* Hover effect: highlight + white outline */
+.button:hover,
+.button:focus-visible {
+  border-color: rgba(255,255,255,.6);       /* brighter outline */
+  background: rgba(255,255,255,.06);        /* subtle highlight */
+  color: var(--accent-2);                   /* slightly brighter text */
+  transform: none !important;               /* kill jump/scale */
+}
+.brand .logo {
+  display: block;
+  height: 44px;   /* bigger on desktop */
+  width: auto;
+  filter: drop-shadow(0 0 12px rgba(255,255,255,.35)); /* a little stronger glow */
+}
+
+@media (max-width: 720px) {
+  .brand .logo {
+    height: 36px;  /* still bigger on mobile */
+  }
+}
+
+/* Project Overlay Styles - Same as projects.html */
+.project-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: overlayFadeIn 0.2s ease-out;
+}
+
+.project-overlay.closing {
+  animation: overlayFadeOut 0.2s ease-in;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes overlayFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.overlay-container {
+  position: relative;
+  width: 100%;
+  max-width: 1024px;
+  max-height: 90vh;
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  animation: overlaySlideIn 0.2s ease-out;
+}
+
+.overlay-content {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 24px;
+  max-height: calc(90vh - 120px);
+  overflow-y: auto;
+  
+  /* Hide scrollbar completely */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.overlay-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.project-overlay.closing .overlay-container {
+  animation: overlaySlideOut 0.2s ease-in;
+}
+
+@keyframes overlaySlideIn {
+  from { transform: scale(0.95) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes overlaySlideOut {
+  from { transform: scale(1) translateY(0); opacity: 1; }
+  to { transform: scale(0.95) translateY(20px); opacity: 0; }
+}
+
+.overlay-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 24px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 20px;
+}
+
+.overlay-title-section {
+  flex: 1;
+}
+
+.overlay-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 2px 0 !important;
+  color: var(--text);
+}
+
+.overlay-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 0 !important;
+}
+
+/* Proper spacing for dynamically generated overlays */
+.project-overlay .overlay-title {
+  margin-bottom: 5px !important;
+}
+
+.project-overlay .overlay-tags {
+  margin-top: 2px !important;
+}
+
+.overlay-tags .tag {
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.overlay-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text);
+}
+
+.overlay-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.overlay-main {
+  margin-bottom: 0px;
+}
+
+.overlay-description {
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.overlay-description h2 {
+  font-size: 24px;
+  margin: 24px 0 16px 0;
+  color: var(--text);
+}
+
+.overlay-description h3 {
+  font-size: 20px;
+  margin: 20px 0 12px 0;
+  color: var(--text);
+}
+
+.overlay-description p {
+  margin: 0 0 16px 0;
+  color: var(--text);
+}
+
+.overlay-description ul {
+  margin: 0 0 16px 0;
+  padding-left: 20px;
+}
+
+.overlay-description li {
+  margin: 0 0 8px 0;
+  color: var(--text);
+}
+
+.overlay-gallery {
+  margin-bottom: 32px;
+}
+
+.overlay-gallery h3 {
+  font-size: 20px;
+  margin: 0 0 16px 0;
+  color: var(--text);
+}
+
+.gallery-container {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.overlay-links {
+  margin-bottom: 32px;
+}
+
+.overlay-links h3 {
+  font-size: 20px;
+  margin: 0 0 16px 0;
+  color: var(--text);
+}
+
+.link-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.link-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.link-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.link-button.github {
+  background: rgba(36, 41, 46, 0.8);
+  border-color: rgba(36, 41, 46, 0.9);
+}
+
+.link-button.github:hover {
+  background: rgba(36, 41, 46, 1);
+}
+
+.link-button.download {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: rgb(34, 197, 94);
+}
+
+.link-button.download:hover {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(34, 197, 94, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Image Carousel Styles */
+.carousel-container {
+  width: 100%;
+}
+
+.carousel-main {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.carousel-image-container {
+  width: 100%;
+  max-height: 70vh;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.04), transparent);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Image Frame Styles */
+.img-frame {
+  position: relative;
+  background: #0f0f10;
+  border-radius: 12px;
+  overflow: hidden;
+  max-height: 70vh;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.img-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Expand icon */
+.expand-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+}
+
+.expand-btn:hover {
+  background: rgba(0, 0, 0, 0.75);
+  transform: scale(1.05);
+}
+
+/* When the frame is fullscreen */
+.img-frame.is-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  border-radius: 0;
+}
+
+.img-frame.is-fullscreen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.img-frame.is-fullscreen .expand-btn {
+  display: none;
+}
+
+/* Optional: hide body scroll during fullscreen for nicer feel */
+.no-scroll {
+  overflow: hidden;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 9999px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.2s ease;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.carousel-arrow:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-arrow-prev {
+  left: 16px;
+}
+
+.carousel-arrow-next {
+  right: 16px;
+}
+
+.carousel-counter {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+}
+
+.carousel-thumbnails {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.carousel-thumbnails::-webkit-scrollbar {
+  height: 4px;
+}
+
+.carousel-thumbnails::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.carousel-thumbnails::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.carousel-thumbnail {
+  flex-shrink: 0;
+  width: 64px;
+  height: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.carousel-thumbnail:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.carousel-thumbnail.active {
+  border-color: var(--accent);
+  border-width: 2px;
+}
+
+.carousel-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Project Card Enhancements - for overlays only */
+.project-overlay .project-card {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.project-overlay .project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  border-color: var(--accent);
+}
+
+.project-card .item-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.item-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 120px;
+}
+
+.project-title {
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.project-summary {
+  margin: 0 0 16px 0;
+  color: #d6d6d6;
+  line-height: 1.5;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .project-overlay {
+    padding: 10px;
+  }
+
+  .overlay-container {
+    max-height: 95vh;
+  }
+
+  .overlay-header {
+    padding: 8px 12px 0;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 12px;
+  }
+
+  .overlay-title-section {
+    flex: 1;
+    padding-right: 8px;
+  }
+
+  .overlay-title {
+    font-size: 24px;
+    margin: 0 0 2px 0 !important;
+  }
+
+  .overlay-tags {
+    margin-top: 0;
+  }
+
+  .overlay-close {
+    flex-shrink: 0;
+    margin-top: 0;
+  }
+
+  .overlay-content {
+    padding: 16px;
+    max-height: calc(95vh - 140px);
+  }
+
+  .carousel-image-container {
+    max-height: 50vh;
+  }
+
+  .carousel-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .link-buttons {
+    flex-direction: column;
+  }
+
+  .link-button {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay-header {
+    padding: 5px 5px 0;
+    gap: 8px;
+    padding-bottom: 5px;
+  }
+
+  .overlay-title-section {
+    padding-right: 4px;
+  }
+
+  .overlay-title {
+    font-size: 20px;
+    line-height: 1.2;
+    margin: 0 0 2px 0 !important;
+  }
+
+  .overlay-close {
+    width: 36px;
+    height: 36px;
+  }
+
+  .overlay-content {
+    padding: 12px;
+  }
+
+  .carousel-image-container {
+    height: 150px;
+  }
+
+  .carousel-thumbnails {
+    gap: 6px;
+  }
+
+  .carousel-thumbnail {
+    width: 60px;
+    height: 45px;
+  }
+}
+  </style>
+</head>
+
+  </style>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <img class="logo" src="assets/logo-mark.png" alt="MF Logo" />
+        <span class="sr-only">Melvin Fernandez Diaz</span>
+      </div>
+
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="#about">About</a>
+        <a class="tab" href="#resume">Resume</a>
+        <a class="tab" href="#projects">Projects</a>
+        <a class="tab" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="card">
+        <span class="badge">Finance and Accounting • NYU Stern</span>
+        <h2>I like eating food, watching shows, and building things. Oh and vibe coding</h2>
+        <p class="lead">I have experience analyzing businesses, designing dashboards, and diving into markets. But really, I just like building things sometimes that’s an Excel model, other times it’s this website.</p>
+        <div class="quick">
+          <a class="button ghost" href="#resume">View resume</a>
+          <a class="button ghost" href="projects.html">See projects</a>
+          <a class="button ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+     <div class="card" aria-labelledby="headshot-title">
+      <h3 id="headshot-title" class="sr-only">Headshot</h3>
+      <!-- Replace src with your image file name once added to repo -->
+    <img class="avatar" src="assets/headshot.jpg" alt="Headshot of Melvin Fernandez" />
+    </div>
+    </section>
+    <!-- About -->
+    <section id="about">
+      <div class="section-title">
+        <h3>About</h3>
+      </div>
+      <div class="panel">
+        <p>My name is Melvin Fernandez, and I was born and raised in Washington Heights. I’m a rising senior at NYU Stern studying Finance and Accounting, and my passion for finance comes from seeing the impact financial literacy can have on people’s lives, something I didn’t grow up with but believe is essential for building wealth and long-term stability. I’m motivated by the idea of ownership and how it can strengthen communities like mine, where lack of business and property ownership often leads to vulnerability. To prepare for my long-term goal of becoming a business owner, I’m gaining hands-on experience by analyzing businesses, studying their financials, and learning what drives growth and value creation. Ultimately, I want to use the skills I build not only to advance my career but also to give back, whether through mentorship, supporting nonprofits, or creating opportunities that empower others with the tools I didn’t have myself.</p>
+      </div>
+    </section>
+    <!-- Resume -->
+    <section id="resume">
+      <div class="section-title">
+        <h3>Resume</h3>
+        <div>
+          <a class="button ghost" id="resume-download" href="assets/resume.pdf" download>Download PDF</a>
+        </div>
+      </div>
+      <div class="panel">
+        <!-- If you have a PDF in the repo named resume.pdf this will render in the page -->
+        <iframe title="Resume PDF" class="resume-embed" src="assets/resume.pdf"></iframe>
+        <p class="muted">If the preview does not load, use the Download button above.</p>
+      </div>
+    </section>
+    <!-- Projects -->
+<section id="projects">
+  <div class="section-title">
+    <h3>Projects</h3>
+    <a class="button ghost" href="projects.html">Check Out More</a>
+  </div>
+
+  <div class="grid cols-3" id="home-projects-grid">
+    <!-- Projects will be dynamically loaded here -->
+  </div>
+</section>
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-title">
+        <h3>Contact</h3>
+      </div>
+      <div class="panel">
+        <p>Email: <a href="mailto:mmf8473@stern.nyu.edu">mmf8473@stern.nyu.edu</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/melvin-fernandez-diaz" target="_blank" rel="noopener">linkedin.com/in/melvin-fernandez-diaz</a></p>
+        <p>New York, NY</p>
+      </div>
+    </section>
+    <footer>
+      <div class="wrap">
+        <small>© <span id="yr"></span> Melvin Fernandez. All rights reserved.</small>
+      </div>
+    </footer>
+  </main>
+  <!-- Scripts for Project Overlay Functionality -->
+  <script type="module" src="./main.js"></script>
+  <script type="module" src="./project-grid.js"></script>
+  
+  <script>
+    // Year stamp
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    // Smooth scroll for in page links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+    // If resume.pdf not found, hide iframe and tweak button text
+    window.addEventListener('load', async () => {
+      try{
+        const r = await fetch('assets/resume.pdf', { method:'HEAD' });
+        if(!r.ok){ throw new Error('no pdf'); }
+      }catch(err){
+        const iframe = document.querySelector('.resume-embed');
+        if(iframe){ iframe.remove(); }
+        const btn = document.getElementById('resume-download');
+        if(btn){ btn.textContent = 'Upload resume.pdf to enable download'; btn.classList.add('ghost'); }
+      }
+    });
+
+    // Initialize home page projects
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Import the projects data and grid functionality
+        const { projects } = await import('./projects-data.js?v=3');
+        const { openProject } = await import('./use-project-overlay.js?v=3');
+        
+        // Get the home projects container
+        const homeGrid = document.getElementById('home-projects-grid');
+        if (!homeGrid) return;
+        
+        // Render the project cards (limit to 3 for home page)
+        const homeProjects = projects.slice(0, 3);
+        homeGrid.innerHTML = homeProjects.map(project => `
+          <div class="item project-card" data-project-slug="${project.slug}">
+            <div class="item-content">
+              <div class="item-body">
+                <h4 class="project-title">${project.title}</h4>
+                <p class="project-summary">${project.summary}</p>
+                <div class="meta">
+                  ${project.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+        
+        // Add click handlers for each project card
+        homeGrid.querySelectorAll('.project-card').forEach(card => {
+          card.addEventListener('click', () => {
+            const slug = card.dataset.projectSlug;
+            if (slug) {
+              openProject(slug);
+            }
+          });
+        });
+        
+      } catch (error) {
+        console.error('Error loading home projects:', error);
+      }
+    });
+  </script>
+
+  <script>
+    (function(){
+      function toFullscreen(frame){
+        const img = frame.querySelector('img');
+        const fullSrc = img.dataset.full || img.src;
+
+        // swap to high-res only in fullscreen
+        if (fullSrc && img.src !== fullSrc) {
+          img.dataset._thumb = img.src;
+          img.src = fullSrc;
+        }
+
+        frame.classList.add('is-fullscreen');
+        document.body.classList.add('no-scroll');
+        
+        // Create modern minimize button INSIDE the fullscreen frame
+        const minimizeBtn = document.createElement('button');
+        minimizeBtn.id = 'simple-minimize-btn';
+        minimizeBtn.setAttribute('aria-label', 'Exit fullscreen');
+        minimizeBtn.setAttribute('title', 'Exit fullscreen');
+        minimizeBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+          </svg>
+        `;
+        minimizeBtn.style.cssText = `
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          width: 44px;
+          height: 44px;
+          background: rgba(0, 0, 0, 0.8);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 8px;
+          color: #e6e6e6;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          backdrop-filter: blur(8px);
+          transition: all 0.2s ease;
+          z-index: 999999;
+          font-family: inherit;
+        `;
+        // Add modern hover effects
+        minimizeBtn.addEventListener('mouseenter', function() {
+          this.style.background = 'rgba(0, 0, 0, 0.95)';
+          this.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+          this.style.transform = 'scale(1.05)';
+          this.style.color = '#ffffff';
+        });
+        
+        minimizeBtn.addEventListener('mouseleave', function() {
+          this.style.background = 'rgba(0, 0, 0, 0.8)';
+          this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          this.style.transform = 'scale(1)';
+          this.style.color = '#e6e6e6';
+        });
+        
+        minimizeBtn.onclick = function() {
+          console.log('Minimize button clicked!');
+          exitFullscreen();
+        };
+        
+        frame.appendChild(minimizeBtn);
+        console.log('Modern minimize button added to frame');
+        
+        // Try to request fullscreen
+        if (frame.requestFullscreen) {
+          frame.requestFullscreen().catch(err => {
+            console.log('Fullscreen failed:', err);
+            // Fallback: just keep the is-fullscreen class for styling
+          });
+        } else if (frame.webkitRequestFullscreen) {
+          frame.webkitRequestFullscreen();
+        } else if (frame.msRequestFullscreen) {
+          frame.msRequestFullscreen();
+        }
+      }
+
+      function exitFullscreen(){
+        // Remove any existing minimize buttons from all frames
+        document.querySelectorAll('#simple-minimize-btn').forEach(btn => btn.remove());
+        
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        } else {
+          // Manual fallback - remove fullscreen styling
+          const fs = document.querySelector('.img-frame.is-fullscreen');
+          if (fs) {
+            const img = fs.querySelector('img');
+            if (img.dataset._thumb) {
+              img.src = img.dataset._thumb;
+              delete img.dataset._thumb;
+            }
+            fs.classList.remove('is-fullscreen');
+            document.body.classList.remove('no-scroll');
+          }
+        }
+      }
+
+      // Initialize frame handlers after page loads
+      function initFrameHandlers() {
+        document.querySelectorAll('.img-frame').forEach(frame => {
+          const btn = frame.querySelector('.expand-btn');
+          if (btn && !btn.dataset.initialized) {
+            btn.dataset.initialized = 'true';
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              toFullscreen(frame);
+            });
+
+            // Click background to exit when fullscreen
+            frame.addEventListener('click', function(e) {
+              if (!document.fullscreenElement) return;
+              // do not exit when clicking the img or the button
+              if (e.target.tagName.toLowerCase() === 'img') return;
+              if (e.target.closest('.expand-btn')) return;
+              exitFullscreen();
+            });
+          }
+        });
+      }
+
+      // Initialize on DOM ready and when new content is added
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFrameHandlers);
+      } else {
+        initFrameHandlers();
+      }
+
+      // Re-initialize when new content is dynamically added (like overlays)
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.addedNodes.length > 0) {
+            // Check if any added nodes contain img-frame elements
+            mutation.addedNodes.forEach(function(node) {
+              if (node.nodeType === 1) { // Element node
+                if (node.classList && node.classList.contains('img-frame')) {
+                  initFrameHandlers();
+                } else if (node.querySelector && node.querySelector('.img-frame')) {
+                  initFrameHandlers();
+                }
+              }
+            });
+          }
+        });
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // Handle cleanup when user presses Esc or otherwise exits
+      document.addEventListener('fullscreenchange', ()=>{
+        const fs = document.querySelector('.img-frame.is-fullscreen');
+        if (!document.fullscreenElement && fs){
+          const img = fs.querySelector('img');
+          // restore thumb if we swapped it
+          if (img.dataset._thumb){
+            img.src = img.dataset._thumb;
+            delete img.dataset._thumb;
+          }
+          fs.classList.remove('is-fullscreen');
+          document.body.classList.remove('no-scroll');
+          // Clean up minimize button
+          document.querySelectorAll('#simple-minimize-btn').forEach(btn => btn.remove());
+        }
+      });
+
+      // Handle webkit fullscreen change
+      document.addEventListener('webkitfullscreenchange', ()=>{
+        const fs = document.querySelector('.img-frame.is-fullscreen');
+        if (!document.webkitFullscreenElement && fs){
+          const img = fs.querySelector('img');
+          if (img.dataset._thumb){
+            img.src = img.dataset._thumb;
+            delete img.dataset._thumb;
+          }
+          fs.classList.remove('is-fullscreen');
+          document.body.classList.remove('no-scroll');
+          // Clean up minimize button
+          document.querySelectorAll('#simple-minimize-btn').forEach(btn => btn.remove());
+        }
+      });
+
+      // Add ESC key handler as backup
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          const fs = document.querySelector('.img-frame.is-fullscreen');
+          if (fs) {
+            exitFullscreen();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

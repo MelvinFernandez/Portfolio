@@ -1,6 +1,6 @@
 // use-project-overlay.js
-import { ProjectOverlay } from './project-overlay.js?v=3';
-import { getProjectBySlug } from './projects-data.js?v=3';
+import { ProjectOverlay } from './project-overlay.js?v=4';
+import { getProjectBySlug } from './projects-data.js?v=4';
 
 export class ProjectOverlayManager {
   constructor() {

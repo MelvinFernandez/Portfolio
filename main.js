@@ -1,6 +1,6 @@
 // main.js
-import { ProjectGrid } from './project-grid.js?v=3';
-import { projectOverlayManager } from './use-project-overlay.js?v=3';
+import { ProjectGrid } from './project-grid.js?v=4';
+import { projectOverlayManager } from './use-project-overlay.js?v=4';
 
 console.log('main.js loaded successfully');
 

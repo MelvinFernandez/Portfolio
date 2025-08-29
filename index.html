@@ -815,6 +815,7 @@ header .tabs .tab, .button{
 
 .carousel-image-container {
   width: 100%;
+  aspect-ratio: 16/9;
   max-height: 70vh;
   border-radius: 16px;
   overflow: hidden;
@@ -838,6 +839,7 @@ header .tabs .tab, .button{
   background: #0f0f10;
   border-radius: 12px;
   overflow: hidden;
+  aspect-ratio: 16/9;
   max-height: 70vh;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1276,8 +1278,8 @@ header .tabs .tab, .button{
     document.addEventListener('DOMContentLoaded', async () => {
       try {
         // Import the projects data and grid functionality
-        const { projects } = await import('./projects-data.js?v=3');
-        const { openProject } = await import('./use-project-overlay.js?v=3');
+        const { projects } = await import('./projects-data.js?v=4');
+        const { openProject } = await import('./use-project-overlay.js?v=4');
         
         // Get the home projects container
         const homeGrid = document.getElementById('home-projects-grid');

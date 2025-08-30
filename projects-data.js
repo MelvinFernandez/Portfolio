@@ -62,48 +62,56 @@ export const projects = [
   },
   {
     slug: "fund-dashboard",
-    title: "Fund Dashboard",
-    summary: "Power BI dashboard tracking fund performance with ABOR/IBOR checks and drill-downs.",
+    title: "Power BI Dashboard",
+    summary: "Interactive Power BI dashboard featuring financial analytics, KPI tracking, and data visualizations with dynamic charts and filters.",
     tags: ["Power BI", "Data Modeling", "ETL"],
-    cover: "assets/logo-mark.png",
+    cover: "projects/PowerBI-Project/Screenshot 2025-08-29 200547.png",
     images: [
-      "assets/logo-mark.png",
-      "assets/logo.png"
+      "projects/PowerBI-Project/Screenshot 2025-08-29 200547.png",
+      "projects/PowerBI-Project/Screenshot 2025-08-29 200708.png"
+    ],
+    downloads: [
+      {
+        name: "Power BI Dashboard",
+        file: "projects/PowerBI-Project/Power BI Dashboard - Melvin.pbix",
+        description: "Complete Power BI dashboard file with data models and visualizations"
+      }
     ],
     details: `
       <div class="project-details">
-        <h2>Fund Performance Dashboard - Power BI Project</h2>
+        <h2>Power BI Dashboard - Financial Analytics Project</h2>
         
         <section class="project-section">
           <h3>Overview</h3>
-          <p>Comprehensive Power BI dashboard designed to monitor and analyze fund performance metrics with advanced data modeling and ETL processes. The dashboard provides real-time insights into portfolio performance, risk metrics, and compliance monitoring.</p>
+          <p>Interactive Power BI dashboard showcasing advanced data visualization and analytics capabilities. The dashboard demonstrates proficiency in data modeling, DAX formulas, and creating insightful business intelligence solutions for financial analysis and reporting.</p>
         </section>
 
         <section class="project-section">
-          <h3>Key Features</h3>
+          <h3>Dashboard Features</h3>
           <ul>
-            <li><strong>Performance Tracking:</strong> Real-time monitoring of fund returns, benchmarks, and peer comparisons</li>
-            <li><strong>ABOR/IBOR Integration:</strong> Automated checks and balances for accounting book of record vs. investment book of record</li>
-            <li><strong>Drill-Down Capabilities:</strong> Multi-level analysis from portfolio level down to individual security details</li>
-            <li><strong>Risk Metrics:</strong> Comprehensive risk analysis including VaR, Sharpe ratio, and drawdown analysis</li>
-            <li><strong>Compliance Monitoring:</strong> Automated alerts for regulatory and investment guideline violations</li>
+            <li><strong>Dynamic Visualizations:</strong> Interactive charts, graphs, and KPI cards with drill-down capabilities</li>
+            <li><strong>Financial Metrics:</strong> Comprehensive tracking of key performance indicators and financial ratios</li>
+            <li><strong>Data Filtering:</strong> Interactive slicers and filters for dynamic data exploration</li>
+            <li><strong>Trend Analysis:</strong> Time-series charts showing performance trends and patterns</li>
+            <li><strong>Professional Layout:</strong> Clean, intuitive design with consistent branding and formatting</li>
           </ul>
         </section>
 
         <section class="project-section">
-          <h3>Technical Implementation</h3>
+          <h3>Technical Skills Demonstrated</h3>
           <ul>
-            <li>Advanced Power BI data modeling with DAX formulas</li>
-            <li>ETL processes for data extraction and transformation</li>
-            <li>Real-time data integration with multiple data sources</li>
-            <li>Custom visualizations and interactive dashboards</li>
-            <li>Automated refresh and data quality monitoring</li>
+            <li>Power BI Desktop development and report design</li>
+            <li>DAX (Data Analysis Expressions) for calculated measures and columns</li>
+            <li>Data modeling and relationship management</li>
+            <li>Advanced chart types and custom visualizations</li>
+            <li>Interactive dashboard design and user experience optimization</li>
+            <li>Data transformation and cleaning techniques</li>
           </ul>
         </section>
 
         <section class="project-section">
-          <h3>Business Impact</h3>
-          <p>The dashboard significantly improved operational efficiency by reducing manual reporting time by 70% and providing portfolio managers with real-time insights for better decision-making. Enhanced compliance monitoring reduced regulatory risk exposure.</p>
+          <h3>Key Learnings</h3>
+          <p>This project enhanced my expertise in business intelligence tools and data visualization best practices. It demonstrates the ability to transform raw data into actionable insights through compelling visual storytelling and interactive analytics.</p>
         </section>
       </div>
     `

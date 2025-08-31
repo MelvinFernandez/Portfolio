@@ -98,8 +98,11 @@
       font-size: 1.05rem;
       line-height: 1.3;
       word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
       color: var(--text);
       font-weight: 600;
+      max-width: 100%;
     }
 
     .project-card p.desc{
@@ -114,6 +117,10 @@
       line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      max-width: 100%;
     }
 
     /* Tag pills */
@@ -714,33 +721,49 @@ header .actions .button{ padding: 8px 12px !important; }
   .overlay-description {
     line-height: 1.7;
     color: var(--text);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
   }
 
   .overlay-description h2 {
     font-size: 24px;
     margin: 24px 0 16px 0;
     color: var(--text);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .overlay-description h3 {
     font-size: 20px;
     margin: 20px 0 12px 0;
     color: var(--text);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .overlay-description p {
     margin: 0 0 16px 0;
     color: var(--text);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   .overlay-description ul {
     margin: 0 0 16px 0;
     padding-left: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .overlay-description li {
     margin: 0 0 8px 0;
     color: var(--text);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   .overlay-gallery {
@@ -1164,6 +1187,31 @@ header .actions .button{ padding: 8px 12px !important; }
       padding: 12px;
     }
 
+    .overlay-description {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .overlay-description h2 {
+      font-size: 18px;
+      margin: 16px 0 12px 0;
+    }
+
+    .overlay-description h3 {
+      font-size: 16px;
+      margin: 14px 0 8px 0;
+    }
+
+    .overlay-description p,
+    .overlay-description li {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .overlay-description ul {
+      padding-left: 16px;
+    }
+
     .carousel-image-container {
       height: 150px;
     }
@@ -1175,6 +1223,28 @@ header .actions .button{ padding: 8px 12px !important; }
     .carousel-thumbnail {
       width: 60px;
       height: 45px;
+    }
+
+    /* Ensure all text elements wrap properly on mobile */
+    .project-card,
+    .overlay-description,
+    .overlay-content * {
+      word-break: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Prevent horizontal scrolling on mobile */
+    body {
+      overflow-x: hidden;
+    }
+
+    .project-card,
+    .overlay-container,
+    .overlay-content {
+      max-width: 100vw;
+      box-sizing: border-box;
     }
   }
 

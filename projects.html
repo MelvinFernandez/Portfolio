@@ -1210,9 +1210,34 @@ header .actions .button{ padding: 8px 12px !important; }
   
   <script>
     (function(){
+      let currentCarousel = null;
+      let currentImageIndex = 0;
+      let carouselImages = [];
+
       function toFullscreen(frame){
         const img = frame.querySelector('img');
         const fullSrc = img.dataset.full || img.src;
+
+        // Find the carousel container and get all images
+        const carouselContainer = frame.closest('.carousel-container');
+        if (carouselContainer) {
+          // Get the carousel instance or images array
+          const thumbnails = carouselContainer.querySelectorAll('.carousel-thumbnail img');
+          if (thumbnails.length > 0) {
+            carouselImages = Array.from(thumbnails).map(thumb => thumb.src);
+            // Find current image index
+            currentImageIndex = Array.from(thumbnails).findIndex(thumb => thumb.src === img.src);
+            if (currentImageIndex === -1) currentImageIndex = 0;
+          } else {
+            // Fallback: single image
+            carouselImages = [img.src];
+            currentImageIndex = 0;
+          }
+        } else {
+          // Single image mode
+          carouselImages = [img.src];
+          currentImageIndex = 0;
+        }
 
         // swap to high-res only in fullscreen
         if (fullSrc && img.src !== fullSrc) {
@@ -1223,7 +1248,20 @@ header .actions .button{ padding: 8px 12px !important; }
         frame.classList.add('is-fullscreen');
         document.body.classList.add('no-scroll');
         
-        // Create modern minimize button INSIDE the fullscreen frame
+        // Create fullscreen controls container
+        const controlsContainer = document.createElement('div');
+        controlsContainer.id = 'fullscreen-controls';
+        controlsContainer.style.cssText = `
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          pointer-events: none;
+          z-index: 999999;
+        `;
+
+        // Create modern minimize button
         const minimizeBtn = document.createElement('button');
         minimizeBtn.id = 'simple-minimize-btn';
         minimizeBtn.setAttribute('aria-label', 'Exit fullscreen');
@@ -1249,31 +1287,231 @@ header .actions .button{ padding: 8px 12px !important; }
           justify-content: center;
           backdrop-filter: blur(8px);
           transition: all 0.2s ease;
-          z-index: 999999;
+          pointer-events: auto;
           font-family: inherit;
         `;
-        // Add modern hover effects
-        minimizeBtn.addEventListener('mouseenter', function() {
-          this.style.background = 'rgba(0, 0, 0, 0.95)';
-          this.style.borderColor = 'rgba(255, 255, 255, 0.4)';
-          this.style.transform = 'scale(1.05)';
-          this.style.color = '#ffffff';
-        });
         
-        minimizeBtn.addEventListener('mouseleave', function() {
-          this.style.background = 'rgba(0, 0, 0, 0.8)';
-          this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-          this.style.transform = 'scale(1)';
-          this.style.color = '#e6e6e6';
-        });
-        
-        minimizeBtn.onclick = function() {
-          console.log('Minimize button clicked!');
+        // Create navigation arrows (only if multiple images)
+        let prevBtn, nextBtn, counter;
+        if (carouselImages.length > 1) {
+          prevBtn = document.createElement('button');
+          prevBtn.id = 'fullscreen-prev';
+          prevBtn.setAttribute('aria-label', 'Previous image');
+          prevBtn.setAttribute('title', 'Previous image');
+          prevBtn.innerHTML = `
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          `;
+          prevBtn.style.cssText = `
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #e6e6e6;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+            pointer-events: auto;
+            font-family: inherit;
+          `;
+
+          nextBtn = document.createElement('button');
+          nextBtn.id = 'fullscreen-next';
+          nextBtn.setAttribute('aria-label', 'Next image');
+          nextBtn.setAttribute('title', 'Next image');
+          nextBtn.innerHTML = `
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          `;
+          nextBtn.style.cssText = `
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #e6e6e6;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+            pointer-events: auto;
+            font-family: inherit;
+          `;
+
+          // Create counter
+          counter = document.createElement('div');
+          counter.id = 'fullscreen-counter';
+          counter.style.cssText = `
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #e6e6e6;
+            padding: 8px 16px;
+            font-size: 14px;
+            backdrop-filter: blur(8px);
+            pointer-events: auto;
+            font-family: inherit;
+          `;
+          updateCounter();
+        }
+
+        // Add hover effects for all buttons
+        function addHoverEffects(btn) {
+          btn.addEventListener('mouseenter', function() {
+            this.style.background = 'rgba(0, 0, 0, 0.95)';
+            this.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+            this.style.transform = this.style.transform.replace('scale(1)', 'scale(1.05)');
+            if (!this.style.transform.includes('scale')) {
+              this.style.transform += ' scale(1.05)';
+            }
+            this.style.color = '#ffffff';
+          });
+          
+          btn.addEventListener('mouseleave', function() {
+            this.style.background = 'rgba(0, 0, 0, 0.8)';
+            this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            this.style.transform = this.style.transform.replace('scale(1.05)', 'scale(1)');
+            this.style.color = '#e6e6e6';
+          });
+        }
+
+        addHoverEffects(minimizeBtn);
+        if (prevBtn) addHoverEffects(prevBtn);
+        if (nextBtn) addHoverEffects(nextBtn);
+
+        // Event handlers
+        minimizeBtn.onclick = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
           exitFullscreen();
         };
+
+        if (prevBtn) {
+          prevBtn.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Previous button clicked');
+            navigateFullscreen(-1);
+          };
+        }
+
+        if (nextBtn) {
+          nextBtn.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Next button clicked');
+            navigateFullscreen(1);
+          };
+        }
+
+        function updateCounter() {
+          if (counter) {
+            counter.textContent = `${currentImageIndex + 1} / ${carouselImages.length}`;
+          }
+        }
+
+        function navigateFullscreen(direction) {
+          if (carouselImages.length <= 1) return;
+          
+          // Handle direction properly - don't add when direction is 0 (for Home/End)
+          if (direction !== 0) {
+            currentImageIndex += direction;
+          }
+          
+          if (currentImageIndex < 0) currentImageIndex = carouselImages.length - 1;
+          if (currentImageIndex >= carouselImages.length) currentImageIndex = 0;
+          
+          const img = frame.querySelector('img');
+          img.src = carouselImages[currentImageIndex];
+          updateCounter();
+          
+          // Update the main carousel if it exists (but don't trigger events that might cause issues)
+          const carouselContainer = frame.closest('.carousel-container');
+          if (carouselContainer) {
+            // Update thumbnail active state
+            const thumbnails = carouselContainer.querySelectorAll('.carousel-thumbnail');
+            thumbnails.forEach((thumb, index) => {
+              thumb.classList.toggle('active', index === currentImageIndex);
+            });
+            
+            // Update main carousel image only if it's different
+            const mainImg = carouselContainer.querySelector('.carousel-image');
+            if (mainImg && mainImg !== img && mainImg.src !== carouselImages[currentImageIndex]) {
+              mainImg.src = carouselImages[currentImageIndex];
+            }
+            
+            // Update carousel counter if it exists
+            const carouselCounter = carouselContainer.querySelector('.carousel-counter');
+            if (carouselCounter) {
+              carouselCounter.textContent = `${currentImageIndex + 1} / ${carouselImages.length}`;
+            }
+          }
+        }
+
+        // Handle keyboard navigation
+        function handleFullscreenKeydown(e) {
+          if (!frame.classList.contains('is-fullscreen')) return;
+          
+          switch(e.key) {
+            case 'ArrowLeft':
+              e.preventDefault();
+              navigateFullscreen(-1);
+              break;
+            case 'ArrowRight':
+              e.preventDefault();
+              navigateFullscreen(1);
+              break;
+            case 'Escape':
+              e.preventDefault();
+              exitFullscreen();
+              break;
+            case 'Home':
+              e.preventDefault();
+              if (carouselImages.length > 1) {
+                currentImageIndex = 0;
+                navigateFullscreen(0);
+              }
+              break;
+            case 'End':
+              e.preventDefault();
+              if (carouselImages.length > 1) {
+                currentImageIndex = carouselImages.length - 1;
+                navigateFullscreen(0);
+              }
+              break;
+          }
+        }
+
+        document.addEventListener('keydown', handleFullscreenKeydown);
+        frame.dataset.keydownHandler = 'true';
         
-        frame.appendChild(minimizeBtn);
-        console.log('Modern minimize button added to frame');
+        // Append controls to container
+        controlsContainer.appendChild(minimizeBtn);
+        if (prevBtn) controlsContainer.appendChild(prevBtn);
+        if (nextBtn) controlsContainer.appendChild(nextBtn);
+        if (counter) controlsContainer.appendChild(counter);
+        
+        frame.appendChild(controlsContainer);
         
         // Try to request fullscreen
         if (frame.requestFullscreen) {
@@ -1291,8 +1529,20 @@ header .actions .button{ padding: 8px 12px !important; }
 
 
       function exitFullscreen(){
-        // Remove any existing minimize buttons from all frames
+        // Remove any existing fullscreen controls
+        document.querySelectorAll('#fullscreen-controls').forEach(controls => controls.remove());
         document.querySelectorAll('#simple-minimize-btn').forEach(btn => btn.remove());
+        
+        // Remove keyboard event listeners
+        const frames = document.querySelectorAll('.img-frame[data-keydown-handler]');
+        frames.forEach(frame => {
+          delete frame.dataset.keydownHandler;
+        });
+        
+        // Reset carousel state
+        currentCarousel = null;
+        currentImageIndex = 0;
+        carouselImages = [];
         
         if (document.exitFullscreen) {
           document.exitFullscreen();
@@ -1330,9 +1580,15 @@ header .actions .button{ padding: 8px 12px !important; }
             // Click background to exit when fullscreen
             frame.addEventListener('click', function(e) {
               if (!document.fullscreenElement) return;
-              // do not exit when clicking the img or the button
+              // do not exit when clicking the img or any buttons
               if (e.target.tagName.toLowerCase() === 'img') return;
+              if (e.target.tagName.toLowerCase() === 'button') return;
+              if (e.target.tagName.toLowerCase() === 'svg') return;
+              if (e.target.tagName.toLowerCase() === 'path') return;
+              if (e.target.closest('button')) return;
               if (e.target.closest('.expand-btn')) return;
+              if (e.target.closest('#fullscreen-controls')) return;
+              console.log('Frame clicked, exiting fullscreen');
               exitFullscreen();
             });
           }
@@ -1377,8 +1633,14 @@ header .actions .button{ padding: 8px 12px !important; }
           }
           fs.classList.remove('is-fullscreen');
           document.body.classList.remove('no-scroll');
-          // Clean up minimize button
+          // Clean up all fullscreen controls
+          document.querySelectorAll('#fullscreen-controls').forEach(controls => controls.remove());
           document.querySelectorAll('#simple-minimize-btn').forEach(btn => btn.remove());
+          
+          // Reset carousel state
+          currentCarousel = null;
+          currentImageIndex = 0;
+          carouselImages = [];
         }
       });
 
@@ -1393,8 +1655,14 @@ header .actions .button{ padding: 8px 12px !important; }
           }
           fs.classList.remove('is-fullscreen');
           document.body.classList.remove('no-scroll');
-          // Clean up minimize button
+          // Clean up all fullscreen controls
+          document.querySelectorAll('#fullscreen-controls').forEach(controls => controls.remove());
           document.querySelectorAll('#simple-minimize-btn').forEach(btn => btn.remove());
+          
+          // Reset carousel state
+          currentCarousel = null;
+          currentImageIndex = 0;
+          carouselImages = [];
         }
       });
 

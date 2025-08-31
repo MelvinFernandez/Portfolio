@@ -125,7 +125,10 @@ export const projects = [
     cover: "projects/Public-Markets/image.png",
     images: [
       "projects/Public-Markets/image.png",
-      "projects/Public-Markets/Screenshot 2025-08-28 001549.png"
+      "projects/Public-Markets/Screenshot 2025-08-28 001549.png",
+      "projects/Public-Markets/Screenshot 2025-08-30 215132.png",
+      "projects/Public-Markets/Screenshot 2025-08-31 033450.png",
+      "projects/Public-Markets/Screenshot 2025-08-31 033459.png"
     ],
     details: `
       <div class="project-details">
